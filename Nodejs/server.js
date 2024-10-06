@@ -2,6 +2,9 @@ const express = require('express')
 const app = express()
 
 app.use(express.static(__dirname + '/public'))
+app.set('view engine', 'ejs')
+
+
 
 const { MongoClient } = require('mongodb')
 
@@ -23,7 +26,12 @@ app.get('/', (요청, 응답) => {
     응답.sendFile(__dirname + '/index.html')
 })
 
-app.get('/news', (요청, 응답) => {
-    응답.send('Today News~')
-    db.collection('post').insertOne({title: '어쩌구 쌸라샬라 테스트용'})
-})
+// app.get('/news', (요청, 응답) => {
+//     응답.send('Today News~')
+//     db.collection('post').insertOne({title: '어쩌구 쌸라샬라 테스트용'})
+// })
+
+app.get('/list', async (요청, 응답) => {
+    let result = await db.collection('post').find().toArray()
+    응답.send(result[1].content)
+  })
