@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../html_css/css/carousel.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div style="overflow: hidden">
+        <div class="slide-container">
+            <div class="slide-box">
+                <img src="car1.png">
+            </div>
+            <div class="slide-box">
+                <img src="car2.png">
+            </div>
+            <div class="slide-box">
+                <img src="car3.png">
+            </div>
+        </div>
+    </div>
+
+    <button class="slide-1">1</button>
+    <button class="slide-2">2</button>
+    <button class="slide-3">3</button>
+    <button class="next">다음</button>
+    <button class="prev">이전</button>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $('.slide-1').click(function(){
+            $('.slide-container').css('transform', 'translateX(0vw)');
+        })
+        $('.slide-2').click(function(){
+            $('.slide-container').css('transform', 'translateX(-100vw)');
+        })
+        $('.slide-3').click(function(){
+            $('.slide-container').css('transform', 'translateX(-200vw)');
+        })
+
+    var count = 1;
+
+    $('.next').on('click', function(){
+        $('.slide-container').css('transform', 'translateX(-' + count + '00vw)');
+        count += 1;
+        $('.slide-container').css('width', count + '00vw');
+    })
+    </script>
+</body>
+</html>

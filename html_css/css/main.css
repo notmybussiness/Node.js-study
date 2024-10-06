@@ -1,0 +1,83 @@
+
+.main-background {
+    width: 100%;
+    height: 500px;
+    background-image: url(/image2.jpeg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding:1px;
+/*    filter: brightness(50%) satusaturate(20%);*/
+    position: relative;
+}
+
+.main-title {
+    color: white;
+    font-size: 40px;
+    margin-top: 80px;
+    text-align: center;
+        
+}
+
+.button-clicker {
+    background-color: rgba(255, 255, 255, 0.3); /* 투명한 흰색 배경 */
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    color: white; /* 텍스트 색상 */
+    padding: 15px; /* 패딩 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    font-size: 16px;  /* 글자 크기 */
+    margin: 4px 2px;  
+    cursor: pointer; /* 마우스 커서 포인터로 변경 */
+    border-radius: 12px; /* 모서리 둥글게 */
+/*    filter: blur(0.px);*/
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+    transition: all 0.3s ease; /* 전환 효과 */
+    
+/*    display: block;  블록 요소로 변환 */
+/*    margin-right: auto;  오른쪽 여백 자동 */
+/*    margin-left: auto;   왼쪽 여백 자동 */
+    
+    position: absolute; /*좌표이동*/
+    left:0;
+    right:0;
+    margin:auto;
+    width: 200px;
+    
+}
+
+.main-link {
+    text-decoration: none;
+    font:white;
+}
+
+a:visited {
+    color: white;
+}
+
+.scroll-button {
+    width: 50px;
+    position: fixed;
+    left: 92%;
+    bottom: 50px;
+    border: 1px bold;
+    background: transparent;
+}
+
+.floating-box {
+    width: 30%;
+    background-color: grey;
+    text-align: center;
+    color: skyblue;
+    border: bold 3px;
+    border-radius: 12px;
+    
+    
+    position: absolute;
+    left:0;
+    right:0;
+    top: 450px;
+    margin:auto;
+    
+    
+    
+}
