@@ -33,5 +33,6 @@ app.get('/', (요청, 응답) => {
 
 app.get('/list', async (요청, 응답) => {
     let result = await db.collection('post').find().toArray()
-    응답.send(result[1].content)
+    // 응답.send(result[1].content) 응답은 한번만
+    응답.render('list.ejs', {글목록: result})
   })
