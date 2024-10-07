@@ -6,8 +6,7 @@ app.set('view engine', 'ejs')
 app.use(express.json())
 app.use(express.urlencoded({extended:true})) 
 
-
-const { MongoClient } = require('mongodb')
+const { MongoClient, ObjectId  } = require('mongodb')
 
 let db
 const url = 'mongodb+srv://admin:qwe123@forum.8qdxb.mongodb.net/?retryWrites=true&w=majority&appName=forum'
@@ -43,7 +42,30 @@ app.get('/write', (요청, 응답) => {
 })
 
 app.post('/add', async(요청, 응답)=>{
-  await db.collection('post').insertOne({title: 요청.body.title, content: 요청.body.content})
-  // console.log(요청.body.title)
-  응답.redirect('/write')
+  console.log(요청.body) // 요청.body쓸려면 맨위에 app.use express어쩌구 해야함
+  try{
+    if(요청.body.title == '' || 요청.body.content == ''){
+      응답.send('비어있다')
+    } else{
+      await db.collection('post').insertOne({title: 요청.body.title, content: 요청.body.content})
+  
+      응답.redirect('/list')
+    }
+  } catch(e){
+    console.log(e) // error메세지 출력가능
+    응답.status(500).send('서버 에러가 났어')
+  }
+})
+
+app.get('/detail/:anyCharacter', async(요청, 응답)=>{
+  try{
+    let url_id = 요청.params.anyCharacter
+    console.log(url_id)
+    let result = await db.collection('post').findOne({_id : new ObjectId(url_id)})
+    console.log(result)
+    응답.render('detail.ejs',{ 글내용: result})
+  } catch(e){
+    console.log("Error:", e)
+    응답.status(500).send('서버 오류')
+  }
 })
