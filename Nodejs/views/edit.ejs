@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="/main.css" rel="stylesheet">
+</head>
+<body class="grey-bg">
+
+    <form class="form-box" action="/update" method="POST">
+        <h4>수정하기</h4>
+        <!-- <%= JSON.stringify(원래내용) %> -->
+        <input name="id" value="<%=원래내용._id %>" style="display: none">
+        <input name="title" value="<%= 원래내용.title %>"> 
+        <input name="content" value="<%= 원래내용.content %>">
+        <button type="submit">전송</button>
+    </form> 
+      
+</body>
+</html>

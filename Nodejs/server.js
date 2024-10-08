@@ -57,6 +57,20 @@ app.post('/add', async(요청, 응답)=>{
   }
 })
 
+app.post('/update', async(요청, 응답)=>{
+  try{
+    if(요청.body.title == '' || 요청.body.content == ''){
+      응답.send('비어있다')
+    } else{
+      await db.collection('post').updateOne({_id: new ObjectId(요청.body.id)}, {$set: {title: 요청.body.title, content: 요청.body.content}})
+      응답.redirect('/list')
+    }
+  } catch(e){
+    console.log(e)
+    응답.status(500).send('서버 오류')
+  }
+  })
+
 app.get('/detail/:anyCharacter', async(요청, 응답)=>{
   try{
     let url_id = 요청.params.anyCharacter
@@ -68,6 +82,14 @@ app.get('/detail/:anyCharacter', async(요청, 응답)=>{
     console.log("Error:", e)
     응답.status(500).send('서버 오류')
   }
+})
+
+app.get('/edit/:id', async(요청, 응답) =>{
+  let url_id = 요청.params.id
+  // console.log(url_id)
+  let res = await db.collection('post').findOne({_id: new ObjectId(url_id)})
+  console.log(res)
+  응답.render('edit.ejs', {원래내용: res})
 })
 
 // 1. 수정 버튼 누르면
